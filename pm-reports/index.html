@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>How your project file works · 项目文件使用说明</title>
+<style>
+  :root { --ink:#18181b; --mut:#71717a; --line:#e4e4e7; --bg:#fafafa;
+          --green:#16a34a; --blue:#2563eb; --amber:#d97706; --red:#dc2626; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+         margin:0; color:var(--ink); background:var(--bg); font-size:18px; line-height:1.65; }
+  body.zh .en { display:none; }
+  .zh { display:none; }
+  body.zh .zh { display:inline; }
+  body.zh p.zh, body.zh li.zh, body.zh h1.zh, body.zh h2.zh { display:block; }
+  .wrap { max-width: 860px; margin:0 auto; padding:32px 22px 80px; }
+  header.top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; }
+  h1 { font-size:34px; margin:6px 0 4px; line-height:1.25; }
+  h2 { font-size:24px; margin:56px 0 12px; }
+  p.sub { color:var(--mut); font-size:19px; margin:0 0 8px; }
+  .lang { flex:none; display:flex; gap:6px; margin-top:8px; }
+  .langbtn { border:1px solid var(--line); background:#fff; border-radius:999px;
+             padding:8px 16px; font-size:15px; cursor:pointer; }
+  .langbtn.on { background:var(--ink); color:#fff; border-color:var(--ink); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:20px 0; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px; }
+  .card .ico { font-size:30px; }
+  .card h3 { margin:8px 0 6px; font-size:18px; }
+  .card p { margin:0; font-size:16px; color:var(--mut); }
+  /* mock spreadsheet */
+  .sheet { background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden;
+           margin:20px 0; box-shadow:0 4px 20px rgba(0,0,0,.06); }
+  .sheet table { border-collapse:collapse; width:100%; font-size:13.5px; }
+  .sheet th, .sheet td { border:1px solid var(--line); padding:8px 10px; text-align:left;
+                         white-space:nowrap; }
+  .sheet thead th { background:#f4f4f5; font-weight:600; color:var(--mut); font-size:12px; }
+  .sheet td.rn, .sheet th.rn { background:#f4f4f5; color:var(--mut); width:36px; text-align:center; }
+  .pill { display:inline-block; font-size:12px; font-weight:700; padding:2px 10px; border-radius:999px; color:#fff; }
+  .st-complete { background:var(--green); } .st-progress { background:var(--blue); }
+  .st-not { background:#a1a1aa; } .st-blocked { background:var(--red); }
+  .callouts { display:grid; gap:10px; margin:6px 0 8px; }
+  .co { display:flex; gap:12px; align-items:flex-start; background:#fff; border:1px solid var(--line);
+        border-radius:12px; padding:14px 16px; font-size:16px; }
+  .co .n { flex:none; width:28px; height:28px; border-radius:50%; background:var(--ink); color:#fff;
+           font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center; }
+  /* column groups */
+  .grp { border-radius:14px; padding:18px 20px; margin:14px 0; background:#fff; border:1px solid var(--line); }
+  .grp h3 { margin:0 0 10px; font-size:18px; }
+  .grp ul { margin:0; padding-left:20px; font-size:16px; }
+  .grp li { margin:7px 0; }
+  .grp code { background:#f4f4f5; padding:1px 7px; border-radius:6px; font-size:14px; }
+  .g-green { border-left:6px solid var(--green); } .g-amber { border-left:6px solid var(--amber); }
+  .g-red { border-left:6px solid var(--red); }
+  /* how-to before/after */
+  .how { background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px; margin:14px 0; }
+  .how h3 { margin:0 0 10px; font-size:18px; }
+  .ba { display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:14px; }
+  .ba div { background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:12px; }
+  .ba b.t { display:block; font-size:12px; color:var(--mut); margin-bottom:6px; text-transform:uppercase; }
+  .chg { background:#fef9c3; padding:1px 6px; border-radius:5px; font-weight:700; }
+  /* dependency diagram */
+  .flow { display:flex; align-items:center; gap:0; margin:22px 0; flex-wrap:wrap; }
+  .node { background:#fff; border:2px solid var(--line); border-radius:12px; padding:12px 16px;
+          font-size:15px; text-align:center; }
+  .node small { display:block; color:var(--mut); font-size:12px; }
+  .arr { font-size:26px; color:var(--mut); padding:0 10px; }
+  /* steps */
+  .steps { display:grid; gap:10px; margin:16px 0; }
+  .step { display:flex; gap:14px; align-items:center; background:#fff; border:1px solid var(--line);
+          border-radius:12px; padding:14px 18px; font-size:17px; }
+  .step .n { flex:none; width:34px; height:34px; border-radius:50%; background:var(--blue); color:#fff;
+             font-weight:700; display:flex; align-items:center; justify-content:center; font-size:17px; }
+  .reassure { background:#f0fdf4; border:1px solid #bbf7d0; border-radius:14px; padding:20px; font-size:17px; }
+  footer { margin-top:64px; color:var(--mut); font-size:14px; text-align:center; }
+  footer a { color:var(--blue); }
+  @media(max-width:640px){ .ba{grid-template-columns:1fr;} h1{font-size:27px;} body{font-size:16px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1><span class="en">How your project file works</span><span class="zh">项目文件使用说明</span></h1>
+    <p class="sub"><span class="en">One file per project. Each row is a task. Five minutes to understand, then you're set.</span><span class="zh">一个项目，一个文件。每一行就是一个任务。花五分钟看懂，就可以上手了。</span></p>
+  </div>
+  <div class="lang">
+    <button class="langbtn on" data-l="en" onclick="setLang('en')">EN</button>
+    <button class="langbtn" data-l="zh" onclick="setLang('zh')">中文</button>
+  </div>
+</header>
+
+<h2><span class="en">The big idea</span><span class="zh">核心概念</span></h2>
+<div class="cards">
+  <div class="card"><div class="ico">📄</div>
+    <h3><span class="en">One file per project</span><span class="zh">一个项目，一个文件</span></h3>
+    <p><span class="en">Maple Street has its own file. Oak Ave has its own file. You always know where to look.</span><span class="zh">Maple Street 有自己的文件，Oak Ave 也有自己的文件。永远知道去哪里找。</span></p></div>
+  <div class="card"><div class="ico">📝</div>
+    <h3><span class="en">Each row is a task</span><span class="zh">每一行是一个任务</span></h3>
+    <p><span class="en">61 rows = 61 tasks, from the soil report to the final key handover.</span><span class="zh">61 行 = 61 个任务，从土壤报告到最后交钥匙。</span></p></div>
+  <div class="card"><div class="ico">🤖</div>
+    <h3><span class="en">Muse double-checks</span><span class="zh">Muse 帮你检查</span></h3>
+    <p><span class="en">You edit freely. Muse validates every change and warns about broken order or dates.</span><span class="zh">你放心改。Muse 会检查每一次修改，顺序或日期错了会提醒你。</span></p></div>
+</div>
+
+<h2><span class="en">What it looks like</span><span class="zh">文件长什么样</span></h2>
+<p><span class="en">This is the file open in Numbers. Don't worry about every column yet — the colors tell you what matters.</span><span class="zh">这就是文件在 Numbers 里打开的样子。先不用管每一列——颜色会告诉你重点在哪里。</span></p>
+
+<div class="sheet">
+<table>
+<thead><tr><th class="rn"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th></tr></thead>
+<tbody>
+<tr><td class="rn">1</td><td><code>task_id</code></td><td><code>stage_name</code></td><td><code>task_name</code></td><td><code>depends_on</code></td><td><code>status</code></td><td><code>planned_start</code></td><td><code>planned_end</code></td><td><code>notes</code></td></tr>
+<tr><td class="rn">2</td><td>T040</td><td>Foundation</td><td>Footing excavation, forms &amp; rebar</td><td>T034</td><td><span class="pill st-complete">complete</span></td><td>2026-10-16</td><td>2026-10-23</td><td></td></tr>
+<tr><td class="rn">3</td><td>T041</td><td>Foundation</td><td>Footing &amp; foundation inspection</td><td>T040</td><td><span class="pill st-complete">complete</span></td><td>2026-10-24</td><td>2026-10-25</td><td>Passed, no corrections</td></tr>
+<tr><td class="rn">4</td><td>T042</td><td>Foundation</td><td>Pour footings &amp; stem walls</td><td>T041</td><td><span class="pill st-progress">in_progress</span></td><td>2026-10-27</td><td>2026-10-29</td><td></td></tr>
+<tr><td class="rn">5</td><td>T043</td><td>Foundation</td><td>Under-slab plumbing rough</td><td>T042</td><td><span class="pill st-not">not_started</span></td><td>2026-10-30</td><td>2026-11-03</td><td></td></tr>
+<tr><td class="rn">6</td><td>T094</td><td>Interior Finishes</td><td>Interior trim, doors &amp; hardware</td><td>T093</td><td><span class="pill st-blocked">blocked</span></td><td>2026-10-01</td><td>2026-10-05</td><td>Waiting on trim carpenter</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callouts">
+  <div class="co"><div class="n">1</div><div><b><span class="en">Status column</span><span class="zh">状态列</span></b> —
+    <span class="en">the heart of the file. This is what you update most: not_started → in_progress → complete.</span><span class="zh">整个文件的核心。你最常改的就是这一列：not_started → in_progress → complete。</span></div></div>
+  <div class="co"><div class="n">2</div><div><b><span class="en">depends_on</span><span class="zh">依赖列</span></b> —
+    <span class="en">"T041" means: this task can't start until T041 is done. Muse reads this to warn you.</span><span class="zh">"T041" 表示：T041 没做完，这个任务不能开始。Muse 靠它来提醒你。</span></div></div>
+  <div class="co"><div class="n">3</div><div><b><span class="en">Dates</span><span class="zh">日期列</span></b> —
+    <span class="en"><i>planned</i> = the plan, <i>actual</i> = what really happened. Always write like 2026-10-10.</span><span class="zh"><i>planned</i> 是计划，<i>actual</i> 是实际发生的情况。永远写成 2026-10-10 这种格式。</span></div></div>
+</div>
+
+<h2><span class="en">The columns, by color</span><span class="zh">各列说明（按颜色）</span></h2>
+
+<div class="grp g-green"><h3>🟢 <span class="en">Edit freely</span><span class="zh">随便改</span></h3>
+<ul>
+<li><code>status</code> — <span class="en"><b>not_started</b> → <b>in_progress</b> → <b>complete</b>. Use <b>blocked</b> when waiting on someone.</span><span class="zh"><b>not_started</b> → <b>in_progress</b> → <b>complete</b>。等人的时候用 <b>blocked</b>。</span></li>
+<li><code>planned_start</code> / <code>planned_end</code> — <span class="en">The plan. Move them when reality shifts.</span><span class="zh">计划日期。实际情况变了就改。</span></li>
+<li><code>actual_start</code> / <code>actual_end</code> — <span class="en">What really happened. Fill in when a task starts / finishes.</span><span class="zh">实际发生的日期。任务开始 / 结束时填写。</span></li>
+<li><code>owner</code> — <span class="en">Who's doing it: a crew name, a sub, or your own name.</span><span class="zh">谁在做：施工队、分包商，或你自己的名字。</span></li>
+<li><code>notes</code> — <span class="en">Anything worth remembering: "waiting on the city", "passed with no corrections".</span><span class="zh">值得记的事："等市政府"、"一次通过"。</span></li>
+</ul></div>
+
+<div class="grp g-amber"><h3>🟡 <span class="en">Careful</span><span class="zh">小心改</span></h3>
+<ul>
+<li><code>depends_on</code> — <span class="en">Which tasks must finish first. Ask Muse if you're unsure.</span><span class="zh">哪些任务必须先完成。不确定就问 Muse。</span></li>
+<li><code>typical_duration_days</code>, <code>long_lead</code>, <code>lead_time_days</code>, <code>inspection_gate</code>, <code>milestone</code> — <span class="en">These describe how the plan itself works. Change only when the plan changes.</span><span class="zh">这些描述计划本身的规则。只有计划变了才改。</span></li>
+</ul></div>
+
+<div class="grp g-red"><h3>🔴 <span class="en">Don't touch</span><span class="zh">不要碰</span></h3>
+<ul>
+<li><code>task_id</code>, <code>stage_id</code> — <span class="en">The glue that links rows together. Changing these breaks the links.</span><span class="zh">连接各行的胶水。改了会导致关联断裂。</span></li>
+</ul></div>
+
+<h2><span class="en">Three things you'll actually do</span><span class="zh">你最常用的三个操作</span></h2>
+
+<div class="how"><h3>1. <span class="en">Mark a task complete</span><span class="zh">标记任务完成</span></h3>
+<div class="ba">
+<div><b class="t"><span class="en">Before</span><span class="zh">改之前</span></b><code>status</code> = in_progress<br><code>actual_end</code> = <i>(empty)</i></div>
+<div><b class="t"><span class="en">After</span><span class="zh">改之后</span></b><code>status</code> = <span class="chg">complete</span><br><code>actual_end</code> = <span class="chg">2026-10-10</span></div>
+</div>
+<p style="font-size:16px;color:var(--mut)"><span class="en">Two cells. That's the whole daily update.</span><span class="zh">改两个格子。这就是每天的更新。</span></p></div>
+
+<div class="how"><h3>2. <span class="en">Leave a note</span><span class="zh">写备注</span></h3>
+<div class="ba">
+<div><b class="t"><span class="en">Before</span><span class="zh">改之前</span></b><code>notes</code> = <i>(empty)</i></div>
+<div><b class="t"><span class="en">After</span><span class="zh">改之后</span></b><code>notes</code> = <span class="chg">Inspector coming Thursday 9am</span></div>
+</div></div>
+
+<div class="how"><h3>3. <span class="en">Something's stuck</span><span class="zh">卡住了</span></h3>
+<div class="ba">
+<div><b class="t"><span class="en">Before</span><span class="zh">改之前</span></b><code>status</code> = in_progress<br><code>notes</code> = <i>(empty)</i></div>
+<div><b class="t"><span class="en">After</span><span class="zh">改之后</span></b><code>status</code> = <span class="chg">blocked</span><br><code>notes</code> = <span class="chg">Waiting on trim carpenter, 2 weeks out</span></div>
+</div>
+<p style="font-size:16px;color:var(--mut)"><span class="en">Muse will flag it in the next report automatically.</span><span class="zh">Muse 会在下份报告里自动标出来。</span></p></div>
+
+<h2><span class="en">How tasks wait for each other</span><span class="zh">任务之间的先后顺序</span></h2>
+<div class="flow">
+  <div class="node">T040<small>Forms &amp; rebar<br><span class="pill st-complete">complete</span></small></div>
+  <div class="arr">→</div>
+  <div class="node">T041<small>Inspection<br><span class="pill st-complete">complete</span></small></div>
+  <div class="arr">→</div>
+  <div class="node">T042<small>Pour walls<br><span class="pill st-progress">in_progress</span></small></div>
+</div>
+<p><span class="en">Each task waits for the one before it. If you mark T042 complete while T041 isn't done, Muse will catch it and warn you.</span><span class="zh">每个任务都要等前一个完成。如果你 T041 还没完就把 T042 标成完成，Muse 会发现并提醒你。</span></p>
+
+<h2><span class="en">The round trip: Numbers → Muse</span><span class="zh">修改流程：Numbers → Muse</span></h2>
+<div class="steps">
+  <div class="step"><div class="n">1</div><div><span class="en">Open the project's CSV in Numbers.</span><span class="zh">在 Numbers 里打开项目的 CSV 文件。</span></div></div>
+  <div class="step"><div class="n">2</div><div><span class="en">Edit — green columns freely, yellow carefully.</span><span class="zh">修改——绿色列随便改，黄色列小心改。</span></div></div>
+  <div class="step"><div class="n">3</div><div><span class="en">File → Export To → CSV.</span><span class="zh">文件 → 导出到 → CSV。</span></div></div>
+  <div class="step"><div class="n">4</div><div><span class="en">Send the file to Muse. It validates, fixes formatting, and saves.</span><span class="zh">把文件发给 Muse。它会检查格式、修正，然后保存。</span></div></div>
+</div>
+
+<h2><span class="en">What if I make a mistake?</span><span class="zh">改错了怎么办？</span></h2>
+<div class="reassure"><span class="en">Almost impossible to break anything. Muse checks every file before saving and tells you exactly which row has a problem. Every version is kept, so nothing is ever truly lost. When in doubt, just ask Muse.</span><span class="zh">基本不可能搞坏。Muse 保存前会检查每个文件，哪一行有问题会明确告诉你。而且每个版本都有保留——不会真正丢失。不确定就问 Muse。</span></div>
+
+<footer>
+  <p><span class="en">Made for Chang &amp; Ma Construction · All examples use sample data</span><span class="zh">Chang &amp; Ma Construction · 所有示例均为演示数据</span></p>
+  <p><a href="demo-2026-10-10.html"><span class="en">See a sample report →</span><span class="zh">看示例报告 →</span></a></p>
+</footer>
+
+</div>
+<script>
+function setLang(l){
+  document.body.classList.toggle('zh', l === 'zh');
+  document.documentElement.lang = l === 'zh' ? 'zh' : 'en';
+  document.querySelectorAll('.langbtn').forEach(b => b.classList.toggle('on', b.dataset.l === l));
+}
+</script>
+</body>
+</html>
