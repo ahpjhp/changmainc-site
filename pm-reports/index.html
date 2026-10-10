@@ -19,6 +19,8 @@
   header.top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; }
   h1 { font-size:34px; margin:6px 0 4px; line-height:1.25; }
   h2 { font-size:24px; margin:56px 0 12px; }
+  h2 .step { display:inline-block; background:var(--ink); color:#fff; font-size:15px;
+             border-radius:999px; padding:3px 14px; margin-right:10px; vertical-align:2px; }
   p.sub { color:var(--mut); font-size:19px; margin:0 0 8px; }
   .lang { flex:none; display:flex; gap:6px; margin-top:8px; }
   .langbtn { border:1px solid var(--line); background:#fff; border-radius:999px;
@@ -84,7 +86,7 @@
 <header class="top">
   <div>
     <h1><span class="en">How your project file works</span><span class="zh">项目文件使用说明</span></h1>
-    <p class="sub"><span class="en">One file per project. Each row is a task. Five minutes to understand, then you're set.</span><span class="zh">一个项目，一个文件。每一行就是一个任务。花五分钟看懂，就可以上手了。</span></p>
+    <p class="sub"><span class="en">Three steps: perfect your template, start a project, then manage it with Muse.</span><span class="zh">三步：定好模板，开新项目，和 Muse 一起管理。</span></p>
   </div>
   <div class="lang">
     <button class="langbtn on" data-l="en" onclick="setLang('en')">EN</button>
@@ -92,7 +94,35 @@
   </div>
 </header>
 
-<h2><span class="en">The big idea</span><span class="zh">核心概念</span></h2>
+<!-- ============ STEP 1 ============ -->
+<h2><span class="step"><span class="en">Step 1</span><span class="zh">第一步</span></span><span class="en">Make the template yours</span><span class="zh">定好你的模板</span></h2>
+<p><span class="en"><code>template.csv</code> is the master copy of <b>how you build</b>. Every new project starts as a copy of it. Get it right once, and every future project starts right.</span><span class="zh"><code>template.csv</code> 是你的母版，记录<b>你怎么做项目</b>。每个新项目都是从它复制出来的。一次定好，以后的每个项目起点都是对的。</span></p>
+<div class="cards">
+  <div class="card"><div class="ico">➕</div>
+    <h3><span class="en">Add a task</span><span class="zh">加任务</span></h3>
+    <p><span class="en">Add a row with a new id (T108, T109…). New projects pick it up automatically.</span><span class="zh">加一行，用新的编号（T108、T109…）。新项目会自动包含它。</span></p></div>
+  <div class="card"><div class="ico">⏱️</div>
+    <h3><span class="en">Fix a duration</span><span class="zh">改工期</span></h3>
+    <p><span class="en">Learned framing takes 40 days, not 30? Change <code>typical_duration_days</code>.</span><span class="zh">发现 framing 要 40 天不是 30 天？改 <code>typical_duration_days</code>。</span></p></div>
+  <div class="card"><div class="ico">🔗</div>
+    <h3><span class="en">Rewire the order</span><span class="zh">改顺序</span></h3>
+    <p><span class="en">Change <code>depends_on</code> to say what waits for what.</span><span class="zh">改 <code>depends_on</code>，说明谁等谁。</span></p></div>
+</div>
+<p style="font-size:16px;color:var(--mut)"><span class="en">Changing the template never touches projects already underway — only new ones. After editing, ask Muse to validate it.</span><span class="zh">改模板不会影响已经在做的项目——只影响新项目。改完让 Muse 检查一遍。</span></p>
+
+<!-- ============ STEP 2 ============ -->
+<h2><span class="step"><span class="en">Step 2</span><span class="zh">第二步</span></span><span class="en">Start a new project</span><span class="zh">开新项目</span></h2>
+<p><span class="en">You never run commands yourself — just describe what you want.</span><span class="zh">你不用自己敲命令——只管说要什么。</span></p>
+<div class="steps">
+  <div class="step"><div class="n">1</div><div><span class="en"><b>Tell Muse</b> the name, address, and start date.<br><i style="color:var(--mut)">Example: "Create a new project: Oak Ave Residence, 567 Oak Ave, Sunnyvale, starting January 5."</i></span><span class="zh"><b>告诉 Muse</b> 项目名、地址和开工日期。<br><i style="color:var(--mut)">比如："新建项目：Oak Ave Residence，地址 567 Oak Ave, Sunnyvale，1 月 5 日开工。"</i></span></div></div>
+  <div class="step"><div class="n">2</div><div><span class="en"><b>Muse builds the file</b> from your template — all 61 tasks, dates auto-scheduled. Takes seconds.</span><span class="zh"><b>Muse 用你的模板生成文件</b>——61 个任务，日期自动排好。几秒钟。</span></div></div>
+  <div class="step"><div class="n">3</div><div><span class="en"><b>Adjust to reality.</b> Move dates, assign owners. The template was the starting point — this project file is now yours to run.</span><span class="zh"><b>按实际情况调整。</b>改日期、指定负责人。模板只是起点——这个项目文件现在由你来管。</span></div></div>
+</div>
+
+<!-- ============ STEP 3 ============ -->
+<h2><span class="step"><span class="en">Step 3</span><span class="zh">第三步</span></span><span class="en">Run the project with Muse</span><span class="zh">和 Muse 一起管项目</span></h2>
+<p><span class="en">Each project lives in its own file. Here's how to read and update it.</span><span class="zh">每个项目都有自己的文件。下面教你怎么看、怎么改。</span></p>
+
 <div class="cards">
   <div class="card"><div class="ico">📄</div>
     <h3><span class="en">One file per project</span><span class="zh">一个项目，一个文件</span></h3>
@@ -105,7 +135,7 @@
     <p><span class="en">You edit freely. Muse validates every change and warns about broken order or dates.</span><span class="zh">你放心改。Muse 会检查每一次修改，顺序或日期错了会提醒你。</span></p></div>
 </div>
 
-<h2><span class="en">What it looks like</span><span class="zh">文件长什么样</span></h2>
+<h2><span class="en">What the file looks like</span><span class="zh">文件长什么样</span></h2>
 <p><span class="en">This is the file open in Numbers. Don't worry about every column yet — the colors tell you what matters.</span><span class="zh">这就是文件在 Numbers 里打开的样子。先不用管每一列——颜色会告诉你重点在哪里。</span></p>
 
 <div class="sheet">
@@ -191,29 +221,6 @@
   <div class="step"><div class="n">2</div><div><span class="en">Edit — green columns freely, yellow carefully.</span><span class="zh">修改——绿色列随便改，黄色列小心改。</span></div></div>
   <div class="step"><div class="n">3</div><div><span class="en">File → Export To → CSV.</span><span class="zh">文件 → 导出到 → CSV。</span></div></div>
   <div class="step"><div class="n">4</div><div><span class="en">Send the file to Muse. It validates, fixes formatting, and saves.</span><span class="zh">把文件发给 Muse。它会检查格式、修正，然后保存。</span></div></div>
-</div>
-
-<h2><span class="en">The template is yours</span><span class="zh">模板是你的</span></h2>
-<p><span class="en"><code>template.csv</code> is the master copy of <b>how you build</b>. Every new project starts as a copy of it. As your process improves, update the template — all future projects follow.</span><span class="zh"><code>template.csv</code> 是你的母版，记录<b>你怎么做项目</b>。每个新项目都是从它复制出来的。做法改进了就更新模板，以后的新项目都会跟着走。</span></p>
-<div class="cards">
-  <div class="card"><div class="ico">➕</div>
-    <h3><span class="en">Add a task</span><span class="zh">加任务</span></h3>
-    <p><span class="en">Add a row with a new id (T108, T109…). New projects pick it up automatically.</span><span class="zh">加一行，用新的编号（T108、T109…）。新项目会自动包含它。</span></p></div>
-  <div class="card"><div class="ico">⏱️</div>
-    <h3><span class="en">Fix a duration</span><span class="zh">改工期</span></h3>
-    <p><span class="en">Learned framing takes 40 days, not 30? Change <code>typical_duration_days</code>.</span><span class="zh">发现 framing 要 40 天不是 30 天？改 <code>typical_duration_days</code>。</span></p></div>
-  <div class="card"><div class="ico">🔗</div>
-    <h3><span class="en">Rewire the order</span><span class="zh">改顺序</span></h3>
-    <p><span class="en">Change <code>depends_on</code> to say what waits for what.</span><span class="zh">改 <code>depends_on</code>，说明谁等谁。</span></p></div>
-</div>
-<p style="font-size:16px;color:var(--mut)"><span class="en">Changing the template never touches projects already underway — only new ones. After editing, ask Muse to validate it.</span><span class="zh">改模板不会影响已经在做的项目——只影响新项目。改完让 Muse 检查一遍。</span></p>
-
-<h2><span class="en">Starting a new project</span><span class="zh">开新项目</span></h2>
-<p><span class="en">You never run commands yourself — just describe what you want.</span><span class="zh">你不用自己敲命令——只管说要什么。</span></p>
-<div class="steps">
-  <div class="step"><div class="n">1</div><div><span class="en"><b>Tell Muse</b> the name, address, and start date.<br><i style="color:var(--mut)">Example: "Create a new project: Oak Ave Residence, 567 Oak Ave, Sunnyvale, starting January 5."</i></span><span class="zh"><b>告诉 Muse</b> 项目名、地址和开工日期。<br><i style="color:var(--mut)">比如："新建项目：Oak Ave Residence，地址 567 Oak Ave, Sunnyvale，1 月 5 日开工。"</i></span></div></div>
-  <div class="step"><div class="n">2</div><div><span class="en"><b>Muse builds the file</b> from your template — all 61 tasks, dates auto-scheduled. Takes seconds.</span><span class="zh"><b>Muse 用你的模板生成文件</b>——61 个任务，日期自动排好。几秒钟。</span></div></div>
-  <div class="step"><div class="n">3</div><div><span class="en"><b>Adjust to reality.</b> Move dates, assign owners. The template was the starting point — this project file is now yours to run.</span><span class="zh"><b>按实际情况调整。</b>改日期、指定负责人。模板只是起点——这个项目文件现在由你来管。</span></div></div>
 </div>
 
 <h2><span class="en">What if I make a mistake?</span><span class="zh">改错了怎么办？</span></h2>
