@@ -16,11 +16,31 @@ table{border-collapse:collapse;width:100%}
 th,td{border:1px solid #e4e4e7;padding:8px 10px;text-align:left;font-size:14px}
 th{background:#fafafa}
 .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;color:#fff}
+/* tabbed portfolio layout (pure CSS — no JS, so it also works inside the encrypted page) */
+.decks{display:flex;gap:16px;align-items:flex-start}
+.decks input{position:absolute;opacity:0;pointer-events:none}
+.sidebar{width:250px;flex:none;position:sticky;top:24px;background:#fff;border-radius:12px;
+padding:12px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.sidebar h3{margin:4px 4px 10px;font-size:13px;color:#71717a;text-transform:uppercase;letter-spacing:.06em}
+.tab{display:block;padding:10px 12px;border-radius:8px;cursor:pointer;margin-bottom:6px;
+border:1px solid transparent}
+.tab:hover{background:#f4f4f5}
+.tab .nm{font-weight:600;font-size:14px}
+.tab .meta{font-size:12px;color:#71717a;margin-top:2px}
+.pbar{height:6px;background:#e4e4e7;border-radius:3px;margin-top:8px;overflow:hidden}
+.pbar i{display:block;height:100%;background:#16a34a;border-radius:3px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.pages{flex:1;min-width:0}
+.page{display:none}
+@media(max-width:760px){
+  .decks{flex-direction:column}
+  .sidebar{width:100%;position:static;box-sizing:border-box}
+}
 </style></head>
 <body><div class="wrap">
 <h1 style="margin-bottom:0">Project Portfolio 2026-10-10 (sample)</h1>
 <p class="sub">Chang &amp; Ma Construction · 2026-10-10 · 3 active projects</p>
-
+<style>#t-P001:checked ~ .pages .pg-P001{display:block} #t-P001:checked ~ .sidebar .tb-P001{background:#eef2ff;border-color:#c7d2fe} #t-P002:checked ~ .pages .pg-P002{display:block} #t-P002:checked ~ .sidebar .tb-P002{background:#eef2ff;border-color:#c7d2fe} #t-P003:checked ~ .pages .pg-P003{display:block} #t-P003:checked ~ .sidebar .tb-P003{background:#eef2ff;border-color:#c7d2fe}</style><div class="decks"><input type="radio" name="proj" id="t-P001" checked><input type="radio" name="proj" id="t-P002"><input type="radio" name="proj" id="t-P003"><aside class="sidebar"><h3>Projects</h3><label class="tab tb-P001" for="t-P001"><div class="nm"><span class="dot" style="background:#dc2626"></span>Maple Street Residence</div><div class="meta">P001 · 1 need attention</div><div class="pbar"><i style="width:15%"></i></div></label><label class="tab tb-P002" for="t-P002"><div class="nm"><span class="dot" style="background:#d97706"></span>Oak Ave Residence</div><div class="meta">P002 · long-lead watch</div><div class="pbar"><i style="width:10%"></i></div></label><label class="tab tb-P003" for="t-P003"><div class="nm"><span class="dot" style="background:#dc2626"></span>Pinewood Lane Residence</div><div class="meta">P003 · 2 need attention</div><div class="pbar"><i style="width:77%"></i></div></label></aside><div class="pages"><div class="page pg-P001">
 <h1>Maple Street Residence <span style="font-size:14px;color:#71717a">(P001)</span></h1>
 <p class="sub">1234 Maple St, Mountain View · Permit B2026-1847 ·
 Target completion 2027-08-31</p>
@@ -93,7 +113,7 @@ Target completion 2027-08-31</p>
 <div class='card'><h2>Upcoming inspections</h2><ul><li><strong>T034 Underground / trench inspection (city) [Site Work & Underground]</strong> — status=not_started, planned 2027-01-17 -> 2027-01-18</li><li><strong>T041 Footing & foundation inspection [Foundation]</strong> — status=not_started, planned 2027-01-25 -> 2027-01-26</li><li><strong>T044 Slab / underfloor inspection [Foundation]</strong> — status=not_started, planned 2027-02-03 -> 2027-02-04</li><li><strong>T054 Framing inspection (4-way) [Framing & Dry-In]</strong> — status=not_started, planned 2027-03-30 -> 2027-03-31</li><li><strong>T064 Rough MEP inspections (city) [MEP Rough-In]</strong> — status=not_started, planned 2027-04-10 -> 2027-04-11</li><li><strong>T071 Insulation / energy inspection [Insulation & Drywall]</strong> — status=not_started, planned 2027-04-16 -> 2027-04-17</li><li><strong>T100 Final building inspection (city) [Final & Closeout]</strong> — status=not_started, planned 2027-06-05 -> 2027-06-06</li><li><strong>T101 HERS final testing & CF3R (Title 24) [Final & Closeout]</strong> — status=not_started, planned 2027-06-01 -> 2027-06-04</li></ul></div>
 <div class='card'><h2>Long-lead watchlist</h2><ul><li><strong>T024 PG&E engineering design & contract (sign + pay) [Entitlements & Building Permit]</strong> — no lead_time_days set in tasks.csv - set one</li><li><strong>T023 Water & sewer will-serve letters / connection fees [Entitlements & Building Permit]</strong> — in progress; process started 2026-10-02 (needed by 2026-09-30)</li><li><strong>T069 Engage HERS rater (Title 24) [Insulation & Drywall]</strong> — on watch: start by 2027-03-12 (needed by 2027-04-11)</li></ul></div>
 <div class='card'><h2>Ready to start</h2><ul><li><strong>T035 Temporary construction power [Site Work & Underground]</strong> — planned 2026-12-14 -> 2026-12-17</li></ul></div>
-<hr style='border:0;border-top:1px solid #e4e4e7;margin:24px 0'>
+</div><div class="page pg-P002">
 <h1>Oak Ave Residence <span style="font-size:14px;color:#71717a">(P002)</span></h1>
 <p class="sub">567 Oak Ave, Sunnyvale · Permit n/a ·
 Target completion 2027-09-30</p>
@@ -163,7 +183,7 @@ Target completion 2027-09-30</p>
 <div class='card'><h2>Upcoming inspections</h2><ul><li><strong>T034 Underground / trench inspection (city) [Site Work & Underground]</strong> — status=not_started, planned 2027-02-16 -> 2027-02-17</li><li><strong>T041 Footing & foundation inspection [Foundation]</strong> — status=not_started, planned 2027-02-24 -> 2027-02-25</li><li><strong>T044 Slab / underfloor inspection [Foundation]</strong> — status=not_started, planned 2027-03-05 -> 2027-03-06</li><li><strong>T054 Framing inspection (4-way) [Framing & Dry-In]</strong> — status=not_started, planned 2027-04-29 -> 2027-04-30</li><li><strong>T064 Rough MEP inspections (city) [MEP Rough-In]</strong> — status=not_started, planned 2027-05-10 -> 2027-05-11</li><li><strong>T071 Insulation / energy inspection [Insulation & Drywall]</strong> — status=not_started, planned 2027-05-16 -> 2027-05-17</li><li><strong>T100 Final building inspection (city) [Final & Closeout]</strong> — status=not_started, planned 2027-07-05 -> 2027-07-06</li><li><strong>T101 HERS final testing & CF3R (Title 24) [Final & Closeout]</strong> — status=not_started, planned 2027-07-01 -> 2027-07-04</li></ul></div>
 <div class='card'><h2>Long-lead watchlist</h2><ul><li><strong>T024 PG&E engineering design & contract (sign + pay) [Entitlements & Building Permit]</strong> — no lead_time_days set in tasks.csv - set one</li><li><strong>T023 Water & sewer will-serve letters / connection fees [Entitlements & Building Permit]</strong> — OVERDUE TO START: needed by 2026-12-07, lead time 90d -> should have started by 2026-09-08</li><li><strong>T069 Engage HERS rater (Title 24) [Insulation & Drywall]</strong> — on watch: start by 2027-04-11 (needed by 2027-05-11)</li></ul></div>
 <div class='card'><h2>Ready to start</h2><ul><li><strong>T024 PG&E engineering design & contract (sign + pay) [Entitlements & Building Permit]</strong> — planned 2026-11-16 -> 2027-01-15</li><li><strong>T023 Water & sewer will-serve letters / connection fees [Entitlements & Building Permit]</strong> — planned 2026-12-07 -> 2026-12-21</li></ul></div>
-<hr style='border:0;border-top:1px solid #e4e4e7;margin:24px 0'>
+</div><div class="page pg-P003">
 <h1>Pinewood Lane Residence <span style="font-size:14px;color:#71717a">(P003)</span></h1>
 <p class="sub">89 Pinewood Ln, Los Altos · Permit n/a ·
 Target completion 2027-01-31</p>
@@ -242,6 +262,6 @@ Target completion 2027-01-31</p>
 <div class='card'><h2>Upcoming inspections</h2><ul><li><strong>T100 Final building inspection (city) [Final & Closeout]</strong> — status=not_started, planned 2026-11-19 -> 2026-11-20</li><li><strong>T101 HERS final testing & CF3R (Title 24) [Final & Closeout]</strong> — status=not_started, planned 2026-11-15 -> 2026-11-18</li></ul></div>
 
 <div class='card'><h2>Ready to start</h2><ul><li><strong>T098 Appliances install [Interior Finishes]</strong> — planned 2026-11-02 -> 2026-11-05</li></ul></div>
-
+</div></div></div>
 <p class="sub">Generated by the SFH project management system · 2026-10-10</p>
 </div></body></html>
