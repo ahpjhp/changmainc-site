@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>P001 Daily Report 2026-10-10 (sample) (encrypted)</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; background: #f4f4f5;
+         margin: 0; padding: 24px; color: #18181b; }
+  .card { max-width: 560px; margin: 12vh auto; background: #fff; border-radius: 12px;
+          padding: 32px; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
+  h1 { font-size: 20px; margin: 0 0 8px; }
+  p.sub { color: #71717a; font-size: 14px; margin: 0 0 20px; }
+  input { width: 100%; box-sizing: border-box; padding: 12px; font-size: 16px;
+          border: 1px solid #d4d4d8; border-radius: 8px; margin-bottom: 12px; }
+  button { width: 100%; padding: 12px; font-size: 16px; border: 0; border-radius: 8px;
+           background: #18181b; color: #fff; cursor: pointer; }
+  button:disabled { opacity: .6; cursor: default; }
+  #err { color: #b91c1c; font-size: 14px; min-height: 20px; margin-top: 10px; }
+  #content { display: none; max-width: 860px; margin: 0 auto; background: #fff;
+             border-radius: 12px; padding: 32px; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th, td { border: 1px solid #e4e4e7; padding: 8px 10px; text-align: left; font-size: 14px; }
+  th { background: #fafafa; }
+</style>
+</head>
+<body>
+<div class="card" id="gate">
+  <h1>🔒 Encrypted project report</h1>
+  <p class="sub">P001 Daily Report 2026-10-10 (sample)<br>Enter the passphrase to decrypt and view this report.
+  The passphrase never leaves your browser.</p>
+  <input type="password" id="pw" placeholder="Passphrase" autocomplete="off"
+         onkeydown="if(event.key==='Enter')unlock()">
+  <button id="go" onclick="unlock()">Unlock report</button>
+  <div id="err"></div>
+</div>
+<div id="content"></div>
+<script>
+const SALT_B64 = "GmwwK7WCRCxxlT5J1hcvXw==";
+const IV_B64 = "MCmvOUYA+WO9GM56";
+const CT_B64 = "NM2JSGYxSYc4oeA7Bi+Go7DcGlcAEeAk2ytF2xXQ8aPyJeQ5o1pAdBlQjV4jOk+3b2QHx816dIwtbsMmtP9pNgwaSxvkTSevrpDG8EGim8sFTU4k8vwG57dLhQFo5R6RJJMkNZHJochoazdH5ANraNHwXqqjY3Lk3K2lmXjZ/Qzd7Cz+1QFQ6KEkMDFPYffAPDBuGvIB1fmUUVERkdpdbRUFHRsGDwAlkDMQcbB8dhG2rUak/ovSiOqMm5EZPO65oZnnX/1RVsoy7DFnnJdlT5/LcFng0rXLAK9iKBiDOSoy/VzSI11vFd400ziUImTdI/4V3yj9Y+G3yBS265lt5KtrPXKPyEuop1nePyEMUBNVigiKklmZK/rDb7KRgeVu4Qhi6dByNQbxSSPo/P25nuUHf4jbzJVYCKRbN/bFzzW4LqT0zWKwJLKQLsQZw1bbegpyuaS/VDShfVMpDII6Cj54BF2XkmpY4oj25+/yMal4tUpxgrR9ZrJj3xP9AXlxN6usIkxINojo3Zw08JOiVDZpfhF120t7m2ktAMSohXYCrYqvd6BBJBRpWOQNyQCGe9ZnX22zWEcmz27KckW1dNgU6qVUlheMyLABc8vSRb1vjhRJiFdRq1f6AldrRxYDwYuU7EyuulPIxHCwF4nDN7xotFLOcJSmaCIhEFs6M7HxO/mjcnNiNCPx4aDuDQBHiAgnmq9xKcS/pQo7kmGutIhpRVAQYAN3bSKsR16yW86XuZfNgByoUFC8cXum6E61k07ZnjPSL11+D8mXc+JL80iaHEwGaXMf0qa34mBh+Beiq8C1fwy0t7Uiniaq9sDK3U+bZzCCCXf8RwdfVn+GMx9iwAGlLl9Rform2tI8GmMEqOnxIzLcRpMwnBIPXhjlGceHjL9ngLL9vq/r8fFCw7FmzgeWGLU14qvoAyB+XS0C4GKqJz/tuZtrd0WBzZ7H3avUGJ2/kalhn81v7F49EyOoJMjUBASljR7Uq6KkKitMmJvqFyFSm6lHm7yGBFHDubNbF/mRrePc4bjmW7SX1q/7R9gujF4ds8glgJmBvkgUmZCuC75qqYU8AoI/7FHwqNQqFDVQmDSSW7AuVqur0JfsPNxcvC+2bFVSYaSb1Ld4Ap2V76N67stvQs5QKMjyvrGYxr1e0ROQXe1UsYL3M42cledU+mTUr6ClFAxUNK7H3E3QcaeXdGMm5t58FQxm7RQGM/0HqaDcvDM9cm5EELUPchwAnI6NVwRzuS3oDJ6JEIx+lIGiTqfIVx3qlWqrsOH9MRj8duYNuurc9p6cSU70Fv7Lto96LF9MnolSgPkoCaVPPTFVazz8E1EC589F5L5z5lbQhKsW8QuTeL8kT3qFhHX4QT+2rLsbtJtzZfa5ejMcZ92blM4gbrIHxMwJzyJ3ZU1S7rkdcqHdhpwzVmXJLEcsgPdiYTUcAj3CnoPGKQu+Osmx3DFmC6x+J1tP7nSy88frzhis2/mdZ5V7O4dPaopl2Dqq5BE2CeKu+FmhaThA2ziELrs7EXc/LvdTxBRfvXcQUIXJz+xqWT9bWKObo3A/qzPsKrnFnIC1mviI5k1ucL3xW+YF71UyG6Gful3dZu+cE8qWIR4xkwzC83VOGo4C6KpXLhqF2zu3b/xrFbnEXcUqNOgtGElZK2DvC6odzl4AHGQPWtF0VvS4cBxRV/F+SKaGNEjVWa9DUnV8wQfRUeR21k96mDsZ4r3ysLNGYAiS1FJCf9nruBX74DEGI3ycMYedodKIotyvjGP2w7fLn8eIWSexq/FF4sa/2fpDQP3MN6BeG/afbf0RtGz79SivXrmLUzjezihj2jpzblnsSsiXNQgtzTBIFUFMAzqFHYEk";
+const ITERS = 600000;
+
+async function unlock() {
+  const pass = document.getElementById('pw').value;
+  const err = document.getElementById('err');
+  const btn = document.getElementById('go');
+  err.textContent = '';
+  if (!pass) { err.textContent = 'Please enter the passphrase.'; return; }
+  btn.disabled = true;
+  btn.textContent = 'Decrypting…';
+  try {
+    const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+    const keyMat = await crypto.subtle.importKey(
+      'raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt: b64(SALT_B64), iterations: ITERS, hash: 'SHA-256' },
+      keyMat, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    const pt = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv: b64(IV_B64) }, key, b64(CT_B64));
+    document.getElementById('gate').style.display = 'none';
+    const c = document.getElementById('content');
+    c.innerHTML = new TextDecoder().decode(pt);
+    c.style.display = 'block';
+    document.title = 'P001 Daily Report 2026-10-10 (sample)';
+  } catch (e) {
+    err.textContent = 'Incorrect passphrase. Try again.';
+    btn.disabled = false;
+    btn.textContent = 'Unlock report';
+  }
+}
+</script>
+</body>
+</html>

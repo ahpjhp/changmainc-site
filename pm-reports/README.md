@@ -1,7 +1,7 @@
 # pm-reports
 
 Temporary project reports live here. Each report is a standalone HTML file
-with a simple JavaScript password gate.
+with AES-256-GCM encryption (passphrase entered by the visitor, decrypted locally in their browser).
 
 Notes:
 - This folder is on the PUBLIC website: the JS gate keeps casual visitors
