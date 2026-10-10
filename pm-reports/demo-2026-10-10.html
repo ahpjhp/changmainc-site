@@ -1,75 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>P001 Daily Report 2026-10-10 (sample) (encrypted)</title>
-<style>
-  body { font-family: -apple-system, system-ui, sans-serif; background: #f4f4f5;
-         margin: 0; padding: 24px; color: #18181b; }
-  .card { max-width: 560px; margin: 12vh auto; background: #fff; border-radius: 12px;
-          padding: 32px; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
-  h1 { font-size: 20px; margin: 0 0 8px; }
-  p.sub { color: #71717a; font-size: 14px; margin: 0 0 20px; }
-  input { width: 100%; box-sizing: border-box; padding: 12px; font-size: 16px;
-          border: 1px solid #d4d4d8; border-radius: 8px; margin-bottom: 12px; }
-  button { width: 100%; padding: 12px; font-size: 16px; border: 0; border-radius: 8px;
-           background: #18181b; color: #fff; cursor: pointer; }
-  button:disabled { opacity: .6; cursor: default; }
-  #err { color: #b91c1c; font-size: 14px; min-height: 20px; margin-top: 10px; }
-  #content { display: none; max-width: 860px; margin: 0 auto; background: #fff;
-             border-radius: 12px; padding: 32px; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
-  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
-  th, td { border: 1px solid #e4e4e7; padding: 8px 10px; text-align: left; font-size: 14px; }
-  th { background: #fafafa; }
-</style>
-</head>
-<body>
-<div class="card" id="gate">
-  <h1>🔒 Encrypted project report</h1>
-  <p class="sub">P001 Daily Report 2026-10-10 (sample)<br>Enter the passphrase to decrypt and view this report.
-  The passphrase never leaves your browser.</p>
-  <input type="password" id="pw" placeholder="Passphrase" autocomplete="off"
-         onkeydown="if(event.key==='Enter')unlock()">
-  <button id="go" onclick="unlock()">Unlock report</button>
-  <div id="err"></div>
-</div>
-<div id="content"></div>
-<script>
-const SALT_B64 = "zea4UfPbaxrbQxKxOyZ6Og==";
-const IV_B64 = "6FxjWJR5GnU1dVwL";
-const CT_B64 = "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";
-const ITERS = 600000;
-
-async function unlock() {
-  const pass = document.getElementById('pw').value;
-  const err = document.getElementById('err');
-  const btn = document.getElementById('go');
-  err.textContent = '';
-  if (!pass) { err.textContent = 'Please enter the passphrase.'; return; }
-  btn.disabled = true;
-  btn.textContent = 'Decrypting…';
-  try {
-    const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
-    const keyMat = await crypto.subtle.importKey(
-      'raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
-    const key = await crypto.subtle.deriveKey(
-      { name: 'PBKDF2', salt: b64(SALT_B64), iterations: ITERS, hash: 'SHA-256' },
-      keyMat, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
-    const pt = await crypto.subtle.decrypt(
-      { name: 'AES-GCM', iv: b64(IV_B64) }, key, b64(CT_B64));
-    document.getElementById('gate').style.display = 'none';
-    const c = document.getElementById('content');
-    c.innerHTML = new TextDecoder().decode(pt);
-    c.style.display = 'block';
-    document.title = 'P001 Daily Report 2026-10-10 (sample)';
-  } catch (e) {
-    err.textContent = 'Incorrect passphrase. Try again.';
-    btn.disabled = false;
-    btn.textContent = 'Unlock report';
-  }
-}
-</script>
-</body>
-</html>
+<title>P001 Daily Report 2026-10-10 (sample)</title><style>
+body{font-family:-apple-system,system-ui,'Segoe UI',sans-serif;background:#f4f4f5;
+margin:0;padding:24px;color:#18181b}
+.wrap{max-width:960px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px} h2{font-size:18px;margin:28px 0 12px}
+.sub{color:#71717a;font-size:14px;margin:0 0 20px}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:16px}
+.kpis{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.kpi{text-align:center;min-width:86px}
+.kpi .n{font-size:26px;font-weight:700} .kpi .l{font-size:12px;color:#71717a}
+ol.focus{margin:0;padding-left:20px} ol.focus li{margin:8px 0;font-size:15px}
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #e4e4e7;padding:8px 10px;text-align:left;font-size:14px}
+th{background:#fafafa}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;color:#fff}
+</style></head>
+<body><div class="wrap">
+<h1>Maple Street Residence <span style="font-size:14px;color:#71717a">(P001)</span></h1>
+<p class="sub">1234 Maple St, Mountain View · Permit B2026-1847 ·
+Target completion 2027-08-31 · Report 2026-10-10</p>
+<div class="card"><div class="kpis"><svg width="140" height="140" viewBox="0 0 140 140"><circle cx="70" cy="70" r="52" fill="none" stroke="#e4e4e7" stroke-width="16"/><circle cx="70" cy="70" r="52" fill="none" stroke="#16a34a" stroke-width="16" stroke-linecap="round" stroke-dasharray="48.2 326.7" transform="rotate(-90 70 70)"/><text x="70" y="70" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="700" fill="#18181b">15%</text></svg><div style="display:flex;gap:16px;flex-wrap:wrap"><div class="kpi"><div class="n" style="color:#16a34a">9</div><div class="l">complete</div></div><div class="kpi"><div class="n" style="color:#2563eb">3</div><div class="l">in progress</div></div><div class="kpi"><div class="n" style="color:#dc2626">0</div><div class="l">blocked</div></div><div class="kpi"><div class="n" style="color:#dc2626">1</div><div class="l">overdue</div></div><div class="kpi"><div class="n" style="color:#a1a1aa">49</div><div class="l">not started</div></div></div></div></div>
+<div class="card"><h2>Focus</h2><ol class='focus'><li>LONG POLE: T023 Water & sewer will-serve letters / connection fees [Entitlements & Building Permit] - in progress; process started 2026-10-02 (needed by 2026-09-30)</li><li>OVERDUE: T023 Water & sewer will-serve letters / connection fees [Entitlements & Building Permit] - planned_end 2026-10-08 (2d ago), status=in_progress</li></ol></div>
+<div class="card"><h2>Stage timeline</h2><svg width="880" height="424" viewBox="0 0 880 424" style="max-width:100%;height:auto">
+<line x1="220.0" y1="24" x2="220.0" y2="396" stroke="#e4e4e7"/>
+<text x="224.0" y="18" font-size="11" fill="#71717a">Sep 26</text>
+<line x1="283.6" y1="24" x2="283.6" y2="396" stroke="#e4e4e7"/>
+<text x="287.6" y="18" font-size="11" fill="#71717a">Oct 26</text>
+<line x1="349.3" y1="24" x2="349.3" y2="396" stroke="#e4e4e7"/>
+<text x="353.3" y="18" font-size="11" fill="#71717a">Nov 26</text>
+<line x1="412.8" y1="24" x2="412.8" y2="396" stroke="#e4e4e7"/>
+<text x="416.8" y="18" font-size="11" fill="#71717a">Dec 26</text>
+<line x1="478.5" y1="24" x2="478.5" y2="396" stroke="#e4e4e7"/>
+<text x="482.5" y="18" font-size="11" fill="#71717a">Jan 27</text>
+<line x1="544.2" y1="24" x2="544.2" y2="396" stroke="#e4e4e7"/>
+<text x="548.2" y="18" font-size="11" fill="#71717a">Feb 27</text>
+<line x1="603.6" y1="24" x2="603.6" y2="396" stroke="#e4e4e7"/>
+<text x="607.6" y="18" font-size="11" fill="#71717a">Mar 27</text>
+<line x1="669.3" y1="24" x2="669.3" y2="396" stroke="#e4e4e7"/>
+<text x="673.3" y="18" font-size="11" fill="#71717a">Apr 27</text>
+<line x1="732.8" y1="24" x2="732.8" y2="396" stroke="#e4e4e7"/>
+<text x="736.8" y="18" font-size="11" fill="#71717a">May 27</text>
+<line x1="798.5" y1="24" x2="798.5" y2="396" stroke="#e4e4e7"/>
+<text x="802.5" y="18" font-size="11" fill="#71717a">Jun 27</text>
+<line x1="862.1" y1="24" x2="862.1" y2="396" stroke="#e4e4e7"/>
+<text x="866.1" y="18" font-size="11" fill="#71717a">Jul 27</text>
+<text x="0" y="51" font-size="13" fill="#18181b">Pre-Construction & Design</text>
+<rect x="220.0" y="36" width="65.7" height="20" rx="10" fill="#e4e4e7"/>
+<rect x="220.0" y="36" width="65.7" height="20" rx="10" fill="#16a34a"/>
+<text x="291.7" y="51" font-size="11" fill="#71717a">6/6</text>
+<text x="0" y="87" font-size="13" fill="#18181b">Final & Closeout</text>
+<rect x="798.5" y="72" width="61.5" height="20" rx="10" fill="#e4e4e7"/>
+<text x="866.0" y="87" font-size="11" fill="#71717a">0/8</text>
+<text x="0" y="123" font-size="13" fill="#18181b">Entitlements & Building Permit</text>
+<circle cx="208" cy="118" r="7" fill="#dc2626"/><text x="208" y="122" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">!</text>
+<rect x="253.9" y="108" width="127.2" height="20" rx="10" fill="#e4e4e7"/>
+<rect x="253.9" y="108" width="76.3" height="20" rx="10" fill="#16a34a"/>
+<rect x="330.2" y="108" width="50.9" height="20" fill="#2563eb" opacity="0.85"/>
+<text x="387.1" y="123" font-size="11" fill="#71717a">3/5</text>
+<text x="0" y="159" font-size="13" fill="#18181b">Site Work & Underground</text>
+<rect x="298.4" y="144" width="216.2" height="20" rx="10" fill="#e4e4e7"/>
+<rect x="298.4" y="144" width="36.0" height="20" fill="#2563eb" opacity="0.85"/>
+<text x="520.6" y="159" font-size="11" fill="#71717a">0/6</text>
+<text x="0" y="195" font-size="13" fill="#18181b">Foundation</text>
+<rect x="514.6" y="180" width="57.2" height="20" rx="10" fill="#e4e4e7"/>
+<text x="577.8" y="195" font-size="11" fill="#71717a">0/7</text>
+<text x="0" y="231" font-size="13" fill="#18181b">Framing & Dry-In</text>
+<rect x="571.8" y="216" width="99.6" height="20" rx="10" fill="#e4e4e7"/>
+<text x="677.4" y="231" font-size="11" fill="#71717a">0/6</text>
+<text x="0" y="267" font-size="13" fill="#18181b">MEP Rough-In</text>
+<rect x="667.2" y="252" width="31.8" height="20" rx="10" fill="#e4e4e7"/>
+<text x="704.9" y="267" font-size="11" fill="#71717a">0/6</text>
+<text x="0" y="303" font-size="13" fill="#18181b">Insulation & Drywall</text>
+<rect x="690.5" y="288" width="38.1" height="20" rx="10" fill="#e4e4e7"/>
+<text x="734.6" y="303" font-size="11" fill="#71717a">0/4</text>
+<text x="0" y="339" font-size="13" fill="#18181b">Exterior Finishes</text>
+<rect x="665.0" y="324" width="65.7" height="20" rx="10" fill="#e4e4e7"/>
+<text x="736.7" y="339" font-size="11" fill="#71717a">0/4</text>
+<text x="0" y="375" font-size="13" fill="#18181b">Interior Finishes</text>
+<rect x="728.6" y="360" width="78.4" height="20" rx="10" fill="#e4e4e7"/>
+<text x="813.0" y="375" font-size="11" fill="#71717a">0/9</text>
+<rect x="291.3" y="387.0" width="10" height="10" fill="#16a34a" transform="rotate(45 296.3 392.0)"><title>Building permit issued (complete)</title></rect>
+<rect x="685.5" y="387.0" width="10" height="10" fill="#a1a1aa" transform="rotate(45 690.5 392.0)"><title>Pre-drywall owner walkthrough (not_started)</title></rect>
+<rect x="814.7" y="387.0" width="10" height="10" fill="#a1a1aa" transform="rotate(45 819.7 392.0)"><title>Certificate of Occupancy issued (not_started)</title></rect>
+<line x1="302.6" y1="24" x2="302.6" y2="396" stroke="#dc2626" stroke-dasharray="5 4" stroke-width="1.5"/>
+<text x="306.6" y="416" font-size="11" font-weight="700" fill="#dc2626">today</text>
+</svg><div style="font-size:12px;color:#71717a;margin-top:8px"><span style="color:#16a34a">■</span> done &nbsp;<span style="color:#2563eb">■</span> in progress &nbsp;<span style="color:#e4e4e7">■</span> planned &nbsp;<span style="color:#16a34a">◆</span> milestone reached &nbsp;<span style="color:#a1a1aa">◆</span> milestone pending &nbsp;<span style="color:#dc2626">●</span> ! = overdue in stage</div></div>
+<div class='card'><h2>Upcoming inspections</h2><ul><li><strong>T034 Underground / trench inspection (city) [Site Work & Underground]</strong> — status=not_started, planned 2027-01-17 -> 2027-01-18</li><li><strong>T041 Footing & foundation inspection [Foundation]</strong> — status=not_started, planned 2027-01-25 -> 2027-01-26</li><li><strong>T044 Slab / underfloor inspection [Foundation]</strong> — status=not_started, planned 2027-02-03 -> 2027-02-04</li><li><strong>T054 Framing inspection (4-way) [Framing & Dry-In]</strong> — status=not_started, planned 2027-03-30 -> 2027-03-31</li><li><strong>T064 Rough MEP inspections (city) [MEP Rough-In]</strong> — status=not_started, planned 2027-04-10 -> 2027-04-11</li><li><strong>T071 Insulation / energy inspection [Insulation & Drywall]</strong> — status=not_started, planned 2027-04-16 -> 2027-04-17</li><li><strong>T100 Final building inspection (city) [Final & Closeout]</strong> — status=not_started, planned 2027-06-05 -> 2027-06-06</li><li><strong>T101 HERS final testing & CF3R (Title 24) [Final & Closeout]</strong> — status=not_started, planned 2027-06-01 -> 2027-06-04</li></ul></div>
+<div class='card'><h2>Long-lead watchlist</h2><ul><li><strong>T024 PG&E engineering design & contract (sign + pay) [Entitlements & Building Permit]</strong> — no lead_time_days set in tasks.csv - set one</li><li><strong>T023 Water & sewer will-serve letters / connection fees [Entitlements & Building Permit]</strong> — in progress; process started 2026-10-02 (needed by 2026-09-30)</li><li><strong>T069 Engage HERS rater (Title 24) [Insulation & Drywall]</strong> — on watch: start by 2027-03-12 (needed by 2027-04-11)</li></ul></div>
+<div class='card'><h2>Ready to start</h2><ul><li><strong>T035 Temporary construction power [Site Work & Underground]</strong> — planned 2026-12-14 -> 2026-12-17</li></ul></div>
+<p class="sub">Generated by the SFH project management system · 2026-10-10</p>
+</div></body></html>
